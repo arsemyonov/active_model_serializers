@@ -71,15 +71,4 @@ ActiveSupport.on_load(:active_record) do
   ActiveRecord::Relation.send(:include, ActiveModel::ArraySerializerSupport)
 end
 
-begin
-  require 'action_controller'
-  require 'action_controller/serialization'
-
-  ActiveSupport.on_load(:action_controller) do
-    include ::ActionController::Serialization
-  end
-rescue LoadError => ex
-  # rails on installed, continuing
-end
-
 ActiveSupport.run_load_hooks(:active_model_serializers, ActiveModel::Serializer)
